@@ -15,10 +15,10 @@ export async function GET(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  // TTL check (deterministic time supported)
+  // TTL check (TEST_MODE compatible)
   if (
     paste.ttl_seconds !== null &&
-    nowMs() > paste.created_at + paste.ttl_seconds * 1000
+    nowMs(req) > paste.created_at + paste.ttl_seconds * 1000
   ) {
     await redis.del(key);
     return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -30,7 +30,6 @@ export async function GET(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  // Increment views safely
   paste.views += 1;
   await redis.set(key, paste);
 
