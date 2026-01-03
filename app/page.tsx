@@ -35,9 +35,9 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+    <section className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Encrypt Your messages: </h1>
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Share Text Securely</h1>
         
         <textarea
           className="w-full h-40 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none mb-4 text-gray-700"
@@ -56,7 +56,7 @@ export default function Home() {
 
         {url && (
           <div className="mt-6 bg-gray-50 p-4 rounded-lg border border-gray-200 text-center">
-            <p className="text-gray-700 mb-2">Your Encrypted Text link:</p>
+            <p className="text-gray-700 mb-2">Your Paste Link:</p>
             <div className="flex items-center justify-center gap-2">
               <input
                 type="text"
@@ -78,6 +78,6 @@ export default function Home() {
       <footer className="mt-8 text-gray-500">
        <i>Thankyou for using Pastebin encryption app</i>
       </footer>
-    </main>
+    </section>
   );
 }
