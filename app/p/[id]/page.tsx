@@ -15,7 +15,7 @@ export default async function PastePage({ params }: { params: any }) {
         
         {/* Header */}
         <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800 mb-6 text-center tracking-tight">
-          Your Paste
+          Your Decrypted Text : 
         </h1>
 
         {/* Paste Content */}

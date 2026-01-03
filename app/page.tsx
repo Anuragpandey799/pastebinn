@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">🚀 Create Your Paste</h1>
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Encrypt Your messages: </h1>
         
         <textarea
           className="w-full h-40 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none mb-4 text-gray-700"
