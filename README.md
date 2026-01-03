@@ -1,4 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 PestBinn – Pastebin Lite
+
+PestBinn is a lightweight, fast, and serverless **Pastebin-like web application** built using **Next.js App Router** and **Upstash Redis**.  
+It allows users to create, share, and view text pastes via public links — **no authentication required**.
+
+🌐 **Live Demo:** https://pastebinn.vercel.app/
+
+---
+
+## 🚀 Features
+
+- 🔗 Create and share text pastes instantly
+- 🌍 Public access (no login required)
+- ⏳ Optional time-based expiration (TTL)
+- 👁️ Optional maximum view limits
+- 🧹 Auto-deletes expired or over-viewed pastes
+- ⚡ Serverless API using Next.js App Router
+- 🧠 Redis-based persistence using Upstash
+- ❤️ Health check API for monitoring
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** Next.js (App Router), React, Tailwind CSS
+- **Backend:** Next.js Route Handlers
+- **Database:** Upstash Redis
+- **Deployment:** Vercel
+- **Package Manager:** pnpm / npm / yarn
+
+---
+
+## 📁 Project Structure
+
+pastebin/
+
+├── app/
+
+│ ├── api/
+
+│ │ ├── pastes/
+
+│ │ │ ├── route.ts
+
+│ │ │ └── [id]/route.ts
+
+│ │ └── healthz/route.ts
+
+
+│ ├── p/[id]/page.tsx
+
+│ ├── page.tsx
+
+│ └── layout.tsx
+
+│
+
+├── lib/
+
+│ ├── redis.ts
+
+│ └── time.ts
+
+│
+
+├── .env.local
+
+├── package.json
+
+└── README.md
+
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+logicluminaryanurag_KV_REST_API_URL=your_upstash_redis_url
+logicluminaryanurag_KV_REST_API_TOKEN=your_upstash_redis_token
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+---
+Installation & Local Setup
+
+```1️⃣ Clone the Repository
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+
+```2️⃣ Install Dependencies
+pnpm install
+or
+npm install
+or
+npm install
+```
+
+```3️⃣ Run the Development Server
+pnpm dev
+```
+---
+Health Check
+
+API: GET /api/healthz
+{ "ok": true }
+
+OR you can follow bellow steps easily:-
+
+
 
 ## Getting Started
 
@@ -18,19 +129,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
+Author
+---
+Anurag Pandey
+🌐 Portfolio: https://my-portfolio-wheat-zeta-89.vercel.app/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📧 Email: anurag.application799@gmail.com
 
-## Deploy on Vercel
+📱 Phone: +91-7991845638
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
