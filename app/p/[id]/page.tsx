@@ -1,6 +1,4 @@
 import { notFound } from "next/navigation";
-import { headers } from "next/headers";
-import Link from "next/link";
 
 export default async function PastePage({
   params,
@@ -9,23 +7,12 @@ export default async function PastePage({
 }) {
   const { id } = params;
 
-  const h = headers();
-  const host = h.get("host");
-
-  if (!host) {
-    notFound();
-  }
-
-  const protocol =
-    process.env.NODE_ENV === "development" ? "http" : "https";
-
-  const res = await fetch(`${protocol}://${host}/api/pastes/${id}`, {
+  // IMPORTANT: relative fetch (works in server components)
+  const res = await fetch(`/api/pastes/${id}`, {
     cache: "no-store",
   });
 
-  if (!res.ok) {
-    notFound();
-  }
+  if (!res.ok) notFound();
 
   const paste = await res.json();
 
@@ -54,9 +41,9 @@ export default async function PastePage({
         </div>
 
         <div className="text-center">
-          <Link href="/" className="text-indigo-600 hover:underline">
+          <a href="/" className="text-indigo-600 hover:underline">
             ← Back to Home
-          </Link>
+          </a>
         </div>
       </div>
     </main>
