@@ -1,34 +1,40 @@
-import { notFound } from "next/navigation";
-import { headers } from "next/headers";
+"use client";
 
-export default async function PastePage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id } = params;
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 
-  if (!id) notFound();
+export default function PastePage() {
+  const { id } = useParams();
+  const router = useRouter();
 
-  // Get current domain safely (works on Vercel + prod)
-  const h = headers();
-  const host = h.get("host");
-  if (!host) notFound();
+  const [paste, setPaste] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-  const protocol =
-    process.env.NODE_ENV === "development" ? "http" : "https";
+  useEffect(() => {
+    if (!id) return;
 
-  const res = await fetch(
-    `${protocol}://${host}/api/pastes/${id}`,
-    { cache: "no-store" }
-  );
+    fetch(`/api/pastes/${id}`, { cache: "no-store" })
+      .then((res) => {
+        if (!res.ok) throw new Error("Not found");
+        return res.json();
+      })
+      .then((data) => setPaste(data))
+      .catch(() => router.replace("/404"))
+      .finally(() => setLoading(false));
+  }, [id, router]);
 
-  if (!res.ok) notFound();
+  if (loading) {
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <p>Loading...</p>
+      </main>
+    );
+  }
 
-  const paste = await res.json();
+  if (!paste) return null;
 
   return (
-    <main className="min-h-svh flex items-center justify-center bg-gray-50 p-4">
+    <main className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <div className="w-full max-w-3xl bg-white shadow-xl rounded-3xl p-6 sm:p-8 border border-gray-200">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-center mb-6">
           Your Paste
