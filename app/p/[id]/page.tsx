@@ -25,8 +25,10 @@ export default function PastePage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen flex items-center justify-center">
-        <p>Loading...</p>
+      <main className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-pulse text-gray-500 text-lg">
+          Loading paste…
+        </div>
       </main>
     );
   }
@@ -34,33 +36,54 @@ export default function PastePage() {
   if (!paste) return null;
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-3xl bg-white shadow-xl rounded-3xl p-6 sm:p-8 border border-gray-200">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-center mb-6">
-          Your Paste
-        </h1>
-
-        <div className="bg-gray-100 rounded-xl p-5 mb-6 overflow-x-auto">
-          <pre className="font-mono text-green-900 whitespace-pre-wrap">
-            {paste.content}
-          </pre>
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4">
+      <div className="w-full max-w-3xl bg-white shadow-2xl rounded-3xl border border-gray-200 overflow-hidden">
+        
+        {/* Header */}
+        <div className="px-6 sm:px-8 py-6 border-b bg-gray-50">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800 text-center tracking-tight">
+            Your Paste
+          </h1>
+          <p className="text-sm text-gray-500 text-center mt-1">
+            Securely shared content
+          </p>
         </div>
 
-        <div className="flex justify-between text-sm text-gray-600 mb-6">
-          {paste.expires_at && (
-            <span>
-              Expires: {new Date(paste.expires_at).toLocaleString()}
-            </span>
-          )}
-          {paste.remaining_views !== null && (
-            <span>Views left: {paste.remaining_views}</span>
-          )}
-        </div>
+        {/* Content */}
+        <div className="px-6 sm:px-8 py-6">
+          <div className="relative bg-gray-900 rounded-xl p-5 mb-6 overflow-x-auto">
+            <pre className="font-mono text-sm sm:text-base text-green-400 whitespace-pre-wrap leading-relaxed">
+              {paste.content}
+            </pre>
+          </div>
 
-        <div className="text-center">
-          <a href="/" className="text-indigo-600 hover:underline">
-            ← Back to Home
-          </a>
+          {/* Meta Info */}
+          <div className="flex flex-col sm:flex-row justify-between gap-2 text-sm text-gray-600 mb-6">
+            {paste.expires_at && (
+              <span>
+                ⏳ Expires:{" "}
+                <strong>
+                  {new Date(paste.expires_at).toLocaleString()}
+                </strong>
+              </span>
+            )}
+            {paste.remaining_views !== null && (
+              <span>
+                👁 Views left:{" "}
+                <strong>{paste.remaining_views}</strong>
+              </span>
+            )}
+          </div>
+
+          {/* Back */}
+          <div className="text-center">
+            <a
+              href="/"
+              className="inline-flex items-center gap-2 text-indigo-600 font-medium hover:text-indigo-700 transition"
+            >
+              ← Back to Home
+            </a>
+          </div>
         </div>
       </div>
     </main>
