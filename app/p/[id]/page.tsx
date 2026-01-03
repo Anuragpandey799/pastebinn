@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 
 export default async function PastePage({
   params,
@@ -7,10 +8,20 @@ export default async function PastePage({
 }) {
   const { id } = params;
 
-  // IMPORTANT: relative fetch (works in server components)
-  const res = await fetch(`/api/pastes/${id}`, {
-    cache: "no-store",
-  });
+  if (!id) notFound();
+
+  // Get current domain safely (works on Vercel + prod)
+  const h = headers();
+  const host = h.get("host");
+  if (!host) notFound();
+
+  const protocol =
+    process.env.NODE_ENV === "development" ? "http" : "https";
+
+  const res = await fetch(
+    `${protocol}://${host}/api/pastes/${id}`,
+    { cache: "no-store" }
+  );
 
   if (!res.ok) notFound();
 

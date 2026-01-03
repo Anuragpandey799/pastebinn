@@ -17,6 +17,7 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content }),
       });
+
       const data = await res.json();
       setUrl(data.url);
       setContent("");
@@ -37,8 +38,10 @@ export default function Home() {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Share Text Securely</h1>
-        
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Share Text Securely
+        </h1>
+
         <textarea
           className="w-full h-40 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none mb-4 text-gray-700"
           placeholder="Paste your text here..."
@@ -57,26 +60,29 @@ export default function Home() {
         {url && (
           <div className="mt-6 bg-gray-50 p-4 rounded-lg border border-gray-200 text-center">
             <p className="text-gray-700 mb-2">Your Paste Link:</p>
-            <div className="flex items-center justify-center gap-2">
-              <input
-                type="text"
-                value={url}
-                readOnly
-                className="w-full text-center p-2 border border-gray-300 rounded-lg bg-white text-blue-900"
-              />
-              <button
-                onClick={copyUrl}
-                className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors"
-              >
-                Copy
-              </button>
-            </div>
+
+            {/* Clickable link (opens in new tab) */}
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-blue-600 font-medium underline break-all mb-3"
+            >
+              {url}
+            </a>
+
+            <button
+              onClick={copyUrl}
+              className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors"
+            >
+              Copy Link
+            </button>
           </div>
         )}
       </div>
 
       <footer className="mt-8 text-gray-500">
-       <i>Thankyou for using Pastebin encryption app</i>
+        <i>Thank you for using Pastebin encryption app</i>
       </footer>
     </section>
   );
